@@ -51,10 +51,10 @@ def exclusions(b):
     for s in double_fashion[double_fashion == 600].index:
         reasons[s] = "saw the fashion block twice"
     for s in no_response[no_response > 300].index:
-        reasons.setdefault(s, "no response on over half the trials")
+        reasons.setdefault(s, "did not respond on over half the trials")
     for s in said_nonword[said_nonword >= 540].index:
         reasons.setdefault(s, "answered non-word on 90% of trials or more")
-    reasons.setdefault("34", "poor EEG recording")
+    reasons.setdefault("34", "had a poor EEG recording")
     return reasons
 
 

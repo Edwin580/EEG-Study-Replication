@@ -1,49 +1,102 @@
-# EEG-Study-Replication
-This is a replication of Gantman et al (2020).
+# Does morality pop out?
 
-# Moral Pop-Out Effect Replication Study
+An EEG replication of Gantman et al. (2020) on the moral pop-out effect, run at Vassar College. We added fashion words as a control, following Firestone and Scholl (2015), to test whether any repeated category pops out the same way.
 
-This repository contains the data analysis and results for a replication study of the moral pop-out effect, based on the work by Gantman et al. (2020).
+**Try it: https://edwin580.github.io/EEG-Study-Replication/**
 
-## Project Overview
+On the page you can:
 
-This study aims to replicate and extend the findings of Gantman et al. (2020) on the moral pop-out effect. We included an additional category of fashion words to control for potential confounds and assess the specificity of the effect to moral content.
+- do a one minute version of the masked word task in your browser, with a control for how long the word is shown
+- see your result next to the 34 participants
+- drag a time window across the grand average ERPs and watch the statistics refit
+- compare the published statistics with corrected ones (see "The bug" below)
 
-## Contents
+Everything runs in the browser from the study's preprocessed data. There is no server and no sign up, and task answers are not stored or sent anywhere.
 
-1. `This.qmd`: The main Quarto document containing the full report, including introduction, methods, results, and discussion.
-2. `This.html`: The rendered HTML output of the Quarto document.
-3. `data/`: Directory containing the raw data files:
-   - `behavioral.csv`: Behavioral data from the experiment
-   - `eeg.csv`: EEG data from the experiment
+The full write-up is in [This.qmd](This.qmd), rendered as [This.html](This.html).
 
-## Key Findings
+## Results in short
 
-- Partial replication of the moral pop-out effect
-- Evidence of a pop-out effect for fashion words in behavioral data
-- ERP results show differences between moral and non-moral words in P2, N2, and P3 components
+- Behavior: accuracy was higher for fashion words than for non-fashion words (p < .001). It was not higher for moral words than for non-moral words (p = .099).
+- EEG at Pz: words and non-words differ in the P2, N2 and P3 windows for moral words and in the P3 window for fashion words.
+- EEG at Cz, the pop-out test as originally coded: no difference for either category in any window.
+- Our participants were about 90% accurate, against about 70% in the original study. We later found the words were on screen longer than in the original procedure.
 
-## Data Analysis
+## Running it locally
 
-The analysis was performed using R. Key packages used include:
+The page is static files with no build step. The browser will not load the data from `file://`, so serve the folder:
 
-- dplyr
-- ggplot2
-- gee
-- patchwork
+```
+python3 -m http.server 8000
+# open http://localhost:8000/
+```
 
-## Reproduction
+Tests for the JavaScript statistics use Node's built-in test runner (Node 18 or later, no packages to install):
 
-To reproduce the analysis:
+```
+npm test
+```
 
-1. Ensure you have R and the required packages installed.
-2. Run the `This.qmd` file in RStudio or using Quarto CLI.
+### Rebuilding the data and the report
+
+The raw data is on OSF at https://osf.io/ngtha/ (`behavioral.csv`, 15 MB, and `eeg.csv`, 1.5 GB). Put both in `data/`.
+
+```
+pip install -r tools/requirements.txt
+python3 tools/build_site_data.py data site/data                 # page data, 2.3 MB
+Rscript tools/reference.R data test/fixtures/r_reference.json   # reference fits for the tests
+quarto render This.qmd                                          # the report
+```
+
+The R code needs `dplyr`, `readr`, `tidyr`, `ggplot2`, `patchwork`, `gee` and `jsonlite`. `This.qmd` downloads the data with `osfr` if `data/` is empty. Versions used here: R 4.3.3, gee 4.13-26, dplyr 1.1.4, Quarto 1.5.57, Python 3.13, pandas 3.0.5, numpy 2.5.3.
+
+## Technical notes
+
+### The bug
+
+R's `gee()` treats rows as one cluster only if they are next to each other in the data frame. Its manual says it "will interpret physically contiguous records possessing the same value of id as members of the same cluster." The original EEG code built each model's data with `group_by(event_id, subject, ...) %>% summarize(...)`, which sorts by trial number. So every row came from a different participant than the row before it, and `gee()` fit about 5,000 one-trial clusters instead of 34 participants. The "robust" standard errors were then plain HC0 errors from trial-level OLS, which ignore that trials from one person are correlated. The published numbers match that fit to every printed digit.
+
+The fix is to sort by subject before fitting ([This.qmd](This.qmd), `fit_gee`). One conclusion changes: the fashion word versus non-word N2 effect at Pz goes from p = .027 to p = .057. The rest of the report's text now matches its numbers too. In a few places the old text did not, for example calling the fashion behavioral effect "not statistically significant" at p < .001.
+
+Other fixes in `This.qmd`:
+
+- the participant count used `max(subject_id)` (46) instead of the number of sessions (42)
+- accuracies were printed as proportions with a % sign
+- Figure 1 paired points by row order instead of by subject
+- figure captions described error bars and shading that were not drawn
+
+### Refitting in the browser
+
+With one 0/1 predictor, everything the GEE needs from a participant is the count, sum and sum of squares of the outcome in each condition. For an arbitrary EEG window, the sum of squares of the window means also needs the cross products between time bins. [tools/build_site_data.py](tools/build_site_data.py) stores those moments for 25 ms bins, plus exact sums for the four analysis windows, which brings 1.5 GB down to 2.3 MB.
+
+[site/js/stats.js](site/js/stats.js) follows `ugee.c` from the `gee` package with its defaults: start from the `glm` fit, moment estimates of scale and exchangeable correlation with the `v4.4compat = FALSE` denominators, tolerance 0.001, at most 25 iterations, and the sandwich variance at the final estimate. [tools/reference.R](tools/reference.R) fits 66 models with the real package, and [test/stats.test.mjs](test/stats.test.mjs) checks the port against them. The agreement is about 1e-12 relative on the analysis windows and 2e-7 on binned windows (float32 moments). One fit takes about 0.35 ms.
+
+### Timing in the task
+
+[site/js/task.js](site/js/task.js) makes every display change inside `requestAnimationFrame`. It counts frames for the brief events and records how long each word was actually up. A browser is not a lab display, so the page reports the measured durations and the frame rate rather than claiming exact timing.
+
+### Layout
+
+The page follows Tufte CSS: a 55% text column, notes in the right margin, ET Book (MIT licensed, from tufte-css 1.8.0, in `site/fonts/`). Charts are hand-written SVG. There are no runtime dependencies.
+
+## Repository
+
+```
+index.html             the web page
+site/                  page styles, scripts, fonts and data
+tools/                 data build script and R reference fits
+test/                  Node tests for the statistics port
+This.qmd, This.html    the full report
+```
 
 ## References
 
-1. Firestone, C. & Scholl, B. (2015). Enhanced visual awareness for morality and pajamas? Perception vs. memory in 'top-down' effects. Cognition, 136, 409-416.
-2. Gantman, A., Devraj-Kizuk, S., Mende-Siedlecki, P., Van Bavel, J., & Mathewson, K. (2020). The time course of moral perception: an ERP investigation of the moral pop-out effect. Social Cognitive and Affective Neuroscience, 15(2), 235-246.
+- de Leeuw, J. R. (2015). jsPsych: A JavaScript library for creating behavioral experiments in a Web browser. *Behavior Research Methods*, 47, 1-12. https://doi.org/10.3758/s13428-014-0458-y
+- Firestone, C., & Scholl, B. J. (2015). Enhanced visual awareness for morality and pajamas? Perception vs. memory in 'top-down' effects. *Cognition*, 136, 409-416. https://doi.org/10.1016/j.cognition.2014.10.014
+- Gantman, A. P., & Van Bavel, J. J. (2014). The moral pop-out effect: Enhanced perceptual awareness of morally relevant stimuli. *Cognition*, 132, 22-29. https://doi.org/10.1016/j.cognition.2014.02.007
+- Gantman, A., Devraj-Kizuk, S., Mende-Siedlecki, P., Van Bavel, J. J., & Mathewson, K. E. (2020). The time course of moral perception: An ERP investigation of the moral pop-out effect. *Social Cognitive and Affective Neuroscience*, 15(2), 235-246. https://doi.org/10.1093/scan/nsaa030
+- Liang, K.-Y., & Zeger, S. L. (1986). Longitudinal data analysis using generalized linear models. *Biometrika*, 73(1), 13-22. https://doi.org/10.1093/biomet/73.1.13
 
 ## Contact
 
-For questions or further information, please contact Edwin Cortazo / edwincortazo@gmail.com
+Edwin Cortazo, edwincortazo@gmail.com

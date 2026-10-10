@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Does Morality Pop Out?</title>
+<meta name="description" content="An EEG replication of the moral pop-out effect. Try the masked word task, then refit the study's statistics live in your browser.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="site/style.css">
+<link rel="preload" href="site/fonts/et-book-roman-line-figures.woff" as="font" type="font/woff" crossorigin>
+<script type="module" src="site/js/main.js"></script>
+</head>
+<body>
+<article>
+
+<header>
+<h1>Does morality pop out?</h1>
+<p class="subtitle">An EEG replication of Gantman et al. (2020). Edwin Cortazo, Vassar College.</p>
+</header>
+
+<section id="try">
+<p class="lede">Do moral words jump out at you faster than other words? Try the experiment, then look at what 34 participants and their EEG said.</p>
+
+<h2>Try the task</h2>
+
+<p><span class="marginnote">Everything on this page is computed in your browser from the study's preprocessed data on <a href="https://osf.io/ngtha/">OSF</a>. Your answers in the task stay on this page and are not sent anywhere.</span>A string of letters flashes, then a row of ampersands covers it. Decide whether it was a real English word. Press <kbd>1</kbd> or tap <em>Word</em> if it was, <kbd>5</kbd> or tap <em>Not a word</em> if it was not. Forty trials take about a minute.</p>
+
+<div class="task main">
+  <span class="marginnote" id="timing-note">Each trial: a fixation cross for 400 to 700&nbsp;ms, the letters, a cross for 33&nbsp;ms, the mask for 25&nbsp;ms, then 1.5&nbsp;s to answer. The page shows the letters for a whole number of screen refreshes and times each one. <a href="https://github.com/Edwin580/EEG-Study-Replication/blob/main/site/js/task.js">task.js</a></span>
+  <div class="task-controls">
+    <label for="exposure">Letters shown for</label>
+    <input type="range" id="exposure" min="0" max="5" step="1" value="0">
+    <output id="exposure-out" for="exposure">17 ms</output>
+    <span class="frames" id="frames-out"></span>
+  </div>
+  <div class="stage idle" id="stage" aria-live="off"><span class="stimulus"></span></div>
+  <div class="task-buttons">
+    <button type="button" id="start">Start</button>
+    <button type="button" id="answer-word" disabled>Word <kbd>1</kbd></button>
+    <button type="button" id="answer-nonword" disabled>Not a word <kbd>5</kbd></button>
+  </div>
+  <p class="progress" id="progress" aria-live="polite"></p>
+</div>
+
+<p id="task-result" class="result" hidden></p>
+
+<h2>The question</h2>
+
+<p>Gantman and Van Bavel (2014) reported that moral words are easier to see than other words when they flash too fast to read comfortably. They called it the moral pop-out effect, and Gantman et al. (2020) looked for it in EEG. We ran that experiment again at Vassar and added fashion words as a control. Firestone and Scholl (2015) had argued that any category you keep seeing in an experiment could pop out the same way, so if fashion words pop out too, the effect is not about morality.</p>
+</section>
+
+<section id="behavior">
+<h2>What 34 participants did</h2>
+
+<p><span class="marginnote">Each dot is one participant, accuracy on real words only. Above the diagonal means more accurate on the category list. <span id="you-note">After the task, your own result appears as a red ring.</span></span>Each participant saw 600 letter strings: 75 words and 75 scrambled non-words from each of four lists. The lists were moral words, matched non-moral words, fashion words and matched non-fashion words. A pop-out effect means better accuracy on the category words than on their matched controls.</p>
+
+<figure class="main">
+  <div class="pair">
+    <div class="chart" id="scatter-moral"></div>
+    <div class="chart" id="scatter-fashion"></div>
+  </div>
+</figure>
+
+<p id="behavior-text">Loading the data&hellip;</p>
+</section>
+
+<section id="eeg">
+<h2>The brain responses</h2>
+
+<p><span class="marginnote">Lines are trial-weighted grand averages. The shaded band is &plusmn;1 standard error across participants. Custom windows snap to 25&nbsp;ms. <a href="https://github.com/Edwin580/EEG-Study-Replication/blob/main/site/js/data.js">data.js</a></span>While participants did the task we recorded EEG at two midline sites, Pz and Cz. The plot shows the average voltage after the word appeared. Following the original study, we compared words with non-words at Pz, and category words with their control words at Cz. Drag across the plot to choose a time window, or use one of the four windows from the analysis.</p>
+
+<form class="erp-controls main" id="erp-controls">
+  <fieldset>
+    <legend>Compare</legend>
+    <div class="opts">
+    <label><input type="radio" name="test" value="pz" checked> words and non-words at Pz</label>
+    <label><input type="radio" name="test" value="cz"> category and control words at Cz</label>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Block</legend>
+    <div class="opts">
+    <label><input type="radio" name="block" value="moral" checked> moral</label>
+    <label><input type="radio" name="block" value="fashion"> fashion</label>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Window</legend>
+    <div class="opts">
+    <span class="presets" id="presets"></span>
+    </div>
+  </fieldset>
+  <fieldset id="cz-options" disabled>
+    <div class="opts"><label><input type="checkbox" name="pool" checked> include non-words, as the original code did</label></div>
+  </fieldset>
+</form>
+
+<figure class="main">
+  <div class="chart erp" id="erp"></div>
+</figure>
+
+<h3>The bug this page found</h3>
+
+<p><span class="marginnote">The <code>gee</code> manual says it &ldquo;will interpret physically contiguous records possessing the same value of id as members of the same cluster.&rdquo; The fix is one <code>arrange(subject)</code> in <a href="https://github.com/Edwin580/EEG-Study-Replication/blob/main/This.qmd">This.qmd</a>.</span>When I rebuilt this analysis for the web I found a bug in the original R code. R's <code>gee()</code> treats rows as one participant only if they sit next to each other in the data frame. The original code sorted the EEG trials by trial number, so each row came from a different participant than the row before it. <code>gee()</code> then saw <span data-live="trial-clusters">thousands of</span> one-trial participants instead of 34, and its standard errors ignored that trials from the same person are correlated.</p>
+
+<figure class="main">
+  <div class="fits" id="fits"></div>
+  <div class="chart ci" id="ci"></div>
+</figure>
+
+<p id="bug-text"></p>
+
+<h3>All sixteen tests</h3>
+
+<p><span class="marginnote">Both columns are refit in your browser on every page load. The published column reproduces the numbers in the original report exactly.</span>The four windows are P2 (200 to 250&nbsp;ms), N2 (250 to 350), P3 (350 to 600) and the late positive potential (600 to 800). <span id="summary-text"></span></p>
+
+<div class="main table-wrap">
+<table id="all-tests">
+<thead>
+<tr><th scope="col">Window</th><th scope="col" class="num">Difference (&micro;V)</th><th scope="col" class="num">Published <i>p</i></th><th scope="col" class="num">Corrected <i>p</i></th></tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+
+<p id="words-only-text"></p>
+</section>
+
+<section id="how">
+<h2>How the page works</h2>
+
+<p><b>Refitting the model in the browser.</b> The EEG export is 1.5&nbsp;GB, too much to send to a phone. With a single 0/1 predictor, everything <code>gee()</code> needs from one participant is the count, sum and sum of squares of the trial means in each condition. For a window of any length the sum of squares also needs the cross products between time bins, so the <a href="https://github.com/Edwin580/EEG-Study-Replication/blob/main/tools/build_site_data.py">build script</a> stores those for 25&nbsp;ms bins. The page loads <span data-live="data-size">2.3&nbsp;MB</span>.</p>
+
+<p><span class="marginnote">One fit takes well under a millisecond, which is why the table and the plot can refit while you drag.</span><b>Matching R exactly.</b> <a href="https://github.com/Edwin580/EEG-Study-Replication/blob/main/site/js/stats.js">stats.js</a> follows the estimator in <code>ugee.c</code> from the <code>gee</code> package: the same start from the <code>glm</code> fit, the same moment estimates for the scale and the exchangeable correlation, and the same stopping rule. <a href="https://github.com/Edwin580/EEG-Study-Replication/blob/main/tools/reference.R">reference.R</a> fits 66 models with the real package and the <a href="https://github.com/Edwin580/EEG-Study-Replication/blob/main/test/stats.test.mjs">tests</a> check the port against them. On the four analysis windows the two agree to about twelve significant digits. On binned windows they agree to about seven, because the bin moments are stored as 32-bit floats.</p>
+
+<p><b>Showing a word for one frame.</b> A browser cannot promise exact timing, but it can change the screen only on refresh boundaries. The task makes every display change inside <code>requestAnimationFrame</code>, counts frames rather than milliseconds for the brief events, and records how long each word was actually up. In the lab we used jsPsych (de Leeuw, 2015) on a 144&nbsp;Hz monitor.</p>
+</section>
+
+<section id="study">
+<h2>About the study</h2>
+
+<p id="sample-text">Loading&hellip;</p>
+
+<p>Each block had 300 trials: 75 words and 75 non-words from the category list and the same from its control list. Block order was random. Non-words were the same words with their letters scrambled. EEG was recorded with a CGX Quick-20r dry electrode headset at 500&nbsp;Hz. The analysis uses Cz and Pz from &minus;200 to 1000&nbsp;ms around word onset.</p>
+
+<p>Our participants were far more accurate than the original study's: <span data-live="word-accuracy">about 90%</span> correct on words, against about 70% in Gantman et al. (2020). We later found the words had been on screen longer than in the original procedure. An easier task leaves less room for any category to stand out, so a null result for moral words here is weak evidence against the effect. You can feel the difference yourself by changing the exposure in the task above.</p>
+
+<p>The <a href="This.html">full report</a> has the methods and discussion. The preregistration and experiment scripts are at <a href="https://osf.io/9ygfj/">osf.io/9ygfj</a>, and the code for this page is on <a href="https://github.com/Edwin580/EEG-Study-Replication">GitHub</a>.</p>
+
+<h3>References</h3>
+<ol class="refs">
+<li>de Leeuw, J. R. (2015). jsPsych: A JavaScript library for creating behavioral experiments in a Web browser. <i>Behavior Research Methods</i>, 47, 1&ndash;12. <a href="https://doi.org/10.3758/s13428-014-0458-y">doi:10.3758/s13428-014-0458-y</a></li>
+<li>Firestone, C., &amp; Scholl, B. J. (2015). Enhanced visual awareness for morality and pajamas? Perception vs. memory in &lsquo;top-down&rsquo; effects. <i>Cognition</i>, 136, 409&ndash;416. <a href="https://doi.org/10.1016/j.cognition.2014.10.014">doi:10.1016/j.cognition.2014.10.014</a></li>
+<li>Gantman, A. P., &amp; Van Bavel, J. J. (2014). The moral pop-out effect: Enhanced perceptual awareness of morally relevant stimuli. <i>Cognition</i>, 132, 22&ndash;29. <a href="https://doi.org/10.1016/j.cognition.2014.02.007">doi:10.1016/j.cognition.2014.02.007</a></li>
+<li>Gantman, A., Devraj-Kizuk, S., Mende-Siedlecki, P., Van Bavel, J. J., &amp; Mathewson, K. E. (2020). The time course of moral perception: An ERP investigation of the moral pop-out effect. <i>Social Cognitive and Affective Neuroscience</i>, 15(2), 235&ndash;246. <a href="https://doi.org/10.1093/scan/nsaa030">doi:10.1093/scan/nsaa030</a></li>
+<li>Liang, K.-Y., &amp; Zeger, S. L. (1986). Longitudinal data analysis using generalized linear models. <i>Biometrika</i>, 73(1), 13&ndash;22. <a href="https://doi.org/10.1093/biomet/73.1.13">doi:10.1093/biomet/73.1.13</a></li>
+</ol>
+</section>
+
+<footer>
+<p>Typeset in ET Book, after Tufte CSS. Data: Vassar College, on <a href="https://osf.io/ngtha/">OSF</a>.</p>
+</footer>
+
+</article>
+<noscript><p>The interactive parts of this page need JavaScript. The <a href="This.html">full report</a> works without it.</p></noscript>
+</body>
+</html>
