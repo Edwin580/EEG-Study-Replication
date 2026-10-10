@@ -1,0 +1,693 @@
+{
+  "gee_version": "4.13.26",
+  "results": [
+    {
+      "kind": "behavior",
+      "block": "moral",
+      "estimate": -0.152846307018275,
+      "se": 0.0925246633170511,
+      "z": -1.65195204758024,
+      "alpha": 0.0478844664115148
+    },
+    {
+      "kind": "behavior",
+      "block": "fashion",
+      "estimate": -0.545440371263415,
+      "se": 0.116702668331013,
+      "z": -4.67376092649687,
+      "alpha": 0.0365539308168076
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "window": "P2",
+      "order": "subject",
+      "estimate": 1.18721220365593,
+      "se": 0.358354541255788,
+      "z": 3.31295425891789,
+      "alpha": 0.0751185096251845
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "window": "P2",
+      "order": "event_id",
+      "estimate": 1.18115677126411,
+      "se": 0.417889015269703,
+      "z": 2.82648437289454,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "window": "N2",
+      "order": "subject",
+      "estimate": 2.1824047153686,
+      "se": 0.52976118080793,
+      "z": 4.11960104747625,
+      "alpha": 0.0699608969936298
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "window": "N2",
+      "order": "event_id",
+      "estimate": 2.16860338544589,
+      "se": 0.431790820755543,
+      "z": 5.02234712088435,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "window": "P3",
+      "order": "subject",
+      "estimate": 2.81609170322244,
+      "se": 0.710912872473396,
+      "z": 3.96123324286525,
+      "alpha": 0.0637906894925271
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "window": "P3",
+      "order": "event_id",
+      "estimate": 2.81058159524815,
+      "se": 0.491249295665251,
+      "z": 5.72129389303664,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "window": "LPP",
+      "order": "subject",
+      "estimate": -0.304864726742674,
+      "se": 0.623387114453026,
+      "z": -0.489045602121836,
+      "alpha": 0.0394256247186782
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "window": "LPP",
+      "order": "event_id",
+      "estimate": -0.300597621103336,
+      "se": 0.553326036159049,
+      "z": -0.543255877113528,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "from": 300,
+      "to": 400,
+      "order": "subject",
+      "estimate": 2.00607910124675,
+      "se": 0.706429914839052,
+      "z": 2.83974256908953,
+      "alpha": 0.0789317481610097
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "from": 300,
+      "to": 400,
+      "order": "event_id",
+      "estimate": 1.99193062110409,
+      "se": 0.470840635005084,
+      "z": 4.23058349898492,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "from": 125,
+      "to": 275,
+      "order": "subject",
+      "estimate": 0.609014708917575,
+      "se": 0.333998712485142,
+      "z": 1.82340436101133,
+      "alpha": 0.0591731367101471
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "from": 125,
+      "to": 275,
+      "order": "event_id",
+      "estimate": 0.603066040831675,
+      "se": 0.363705786078236,
+      "z": 1.65811505869734,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "from": 0,
+      "to": 1000,
+      "order": "subject",
+      "estimate": 0.683597832651045,
+      "se": 0.463324541329455,
+      "z": 1.47541900260569,
+      "alpha": 0.0334412651856097
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "from": 0,
+      "to": 1000,
+      "order": "event_id",
+      "estimate": 0.683397156657133,
+      "se": 0.406922994575982,
+      "z": 1.67942624468602,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "from": 575,
+      "to": 600,
+      "order": "subject",
+      "estimate": 1.31500187200567,
+      "se": 0.755940519152728,
+      "z": 1.73955733115027,
+      "alpha": 0.0406757967628423
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-moral",
+      "from": 575,
+      "to": 600,
+      "order": "event_id",
+      "estimate": 1.32013719195055,
+      "se": 0.593270422722638,
+      "z": 2.22518625805104,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "window": "P2",
+      "order": "subject",
+      "estimate": 0.478163383518802,
+      "se": 0.501534386633486,
+      "z": 0.953400995549757,
+      "alpha": 0.0588988361317012
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "window": "P2",
+      "order": "event_id",
+      "estimate": 0.481183470602091,
+      "se": 0.476276023486682,
+      "z": 1.01030378787385,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "window": "N2",
+      "order": "subject",
+      "estimate": 1.06991319156725,
+      "se": 0.561875956750482,
+      "z": 1.90418041333342,
+      "alpha": 0.0592855393727765
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "window": "N2",
+      "order": "event_id",
+      "estimate": 1.06546406182942,
+      "se": 0.481555531464883,
+      "z": 2.21254661656215,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "window": "P3",
+      "order": "subject",
+      "estimate": 2.0176999279582,
+      "se": 0.708022661854377,
+      "z": 2.84976743918571,
+      "alpha": 0.061717905497238
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "window": "P3",
+      "order": "event_id",
+      "estimate": 2.00344609019487,
+      "se": 0.540289054710094,
+      "z": 3.70810045609729,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "window": "LPP",
+      "order": "subject",
+      "estimate": -0.572342648116721,
+      "se": 0.676481848712254,
+      "z": -0.846057657284122,
+      "alpha": 0.0667950293875982
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "window": "LPP",
+      "order": "event_id",
+      "estimate": -0.577611690636509,
+      "se": 0.60615050485149,
+      "z": -0.952917940368667,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "from": 300,
+      "to": 400,
+      "order": "subject",
+      "estimate": 0.955661757548097,
+      "se": 0.553292649025573,
+      "z": 1.72722655764748,
+      "alpha": 0.0663793749402465
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "from": 300,
+      "to": 400,
+      "order": "event_id",
+      "estimate": 0.943384088507591,
+      "se": 0.510308974615283,
+      "z": 1.84865274850163,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "from": 125,
+      "to": 275,
+      "order": "subject",
+      "estimate": 0.209353832041441,
+      "se": 0.421340045660051,
+      "z": 0.496876179223547,
+      "alpha": 0.0548331869416436
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "from": 125,
+      "to": 275,
+      "order": "event_id",
+      "estimate": 0.2149510415718,
+      "se": 0.418503258398902,
+      "z": 0.51361856152364,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "from": 0,
+      "to": 1000,
+      "order": "subject",
+      "estimate": 0.186421794526431,
+      "se": 0.511337054590516,
+      "z": 0.364577127459928,
+      "alpha": 0.049425625363441
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "from": 0,
+      "to": 1000,
+      "order": "event_id",
+      "estimate": 0.182160837581006,
+      "se": 0.423319944253021,
+      "z": 0.430314801024653,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "from": 575,
+      "to": 600,
+      "order": "subject",
+      "estimate": 0.897304929274675,
+      "se": 1.00208002720341,
+      "z": 0.895442384755296,
+      "alpha": 0.0505000543069543
+    },
+    {
+      "kind": "eeg",
+      "test": "pz-fashion",
+      "from": 575,
+      "to": 600,
+      "order": "event_id",
+      "estimate": 0.889862302932228,
+      "se": 0.715682161208013,
+      "z": 1.24337639131624,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "window": "P2",
+      "order": "subject",
+      "estimate": 0.0141749698913933,
+      "se": 0.219443843426272,
+      "z": 0.0645949764189022,
+      "alpha": 0.0915495628317138
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "window": "P2",
+      "order": "event_id",
+      "estimate": 0.0300242541399025,
+      "se": 0.314275511508814,
+      "z": 0.0955348191011073,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "window": "N2",
+      "order": "subject",
+      "estimate": 0.129532021206796,
+      "se": 0.294018465594593,
+      "z": 0.440557435550329,
+      "alpha": 0.0727834986248242
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "window": "N2",
+      "order": "event_id",
+      "estimate": 0.152448544128,
+      "se": 0.324046752555327,
+      "z": 0.470452312593292,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "window": "P3",
+      "order": "subject",
+      "estimate": 0.096990253693073,
+      "se": 0.446707443713153,
+      "z": 0.217122537486423,
+      "alpha": 0.0963190850934096
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "window": "P3",
+      "order": "event_id",
+      "estimate": 0.117081441394619,
+      "se": 0.376319054125391,
+      "z": 0.311122809517924,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "window": "LPP",
+      "order": "subject",
+      "estimate": 0.324936941154084,
+      "se": 0.404148923877689,
+      "z": 0.80400298493043,
+      "alpha": 0.0500216253523383
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "window": "LPP",
+      "order": "event_id",
+      "estimate": 0.337617401724602,
+      "se": 0.426465602536245,
+      "z": 0.791663852176467,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "from": 300,
+      "to": 400,
+      "order": "subject",
+      "estimate": 0.200552362571013,
+      "se": 0.470731055579855,
+      "z": 0.426044468903733,
+      "alpha": 0.0710831587181985
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "from": 300,
+      "to": 400,
+      "order": "event_id",
+      "estimate": 0.225260223905122,
+      "se": 0.35450525255042,
+      "z": 0.635421400062567,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "from": 125,
+      "to": 275,
+      "order": "subject",
+      "estimate": 0.143952984071334,
+      "se": 0.186076648939414,
+      "z": 0.77362197186926,
+      "alpha": 0.0727007693274951
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "from": 125,
+      "to": 275,
+      "order": "event_id",
+      "estimate": 0.155411821087113,
+      "se": 0.273492800169682,
+      "z": 0.568248308513759,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "from": 0,
+      "to": 1000,
+      "order": "subject",
+      "estimate": 0.289053075675287,
+      "se": 0.278722413463646,
+      "z": 1.03706433968931,
+      "alpha": 0.0457612849160015
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "from": 0,
+      "to": 1000,
+      "order": "event_id",
+      "estimate": 0.301134679197464,
+      "se": 0.306700851762077,
+      "z": 0.981851460363954,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "from": 575,
+      "to": 600,
+      "order": "subject",
+      "estimate": 0.287359711682387,
+      "se": 0.461802688402372,
+      "z": 0.622256472080146,
+      "alpha": 0.0752304394213736
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-moral",
+      "from": 575,
+      "to": 600,
+      "order": "event_id",
+      "estimate": 0.309101175076078,
+      "se": 0.443423349580583,
+      "z": 0.697079157803587,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "window": "P2",
+      "order": "subject",
+      "estimate": -0.0501316943927308,
+      "se": 0.419005734895218,
+      "z": -0.119644411084892,
+      "alpha": 0.0428304318077548
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "window": "P2",
+      "order": "event_id",
+      "estimate": -0.061708741920605,
+      "se": 0.426786334327962,
+      "z": -0.144589310756106,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "window": "N2",
+      "order": "subject",
+      "estimate": 0.119490517246871,
+      "se": 0.365272759915529,
+      "z": 0.327126822362838,
+      "alpha": 0.0298127153194381
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "window": "N2",
+      "order": "event_id",
+      "estimate": 0.0933451652156454,
+      "se": 0.447902230069865,
+      "z": 0.208405225401725,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "window": "P3",
+      "order": "subject",
+      "estimate": -0.775087590173986,
+      "se": 0.452591730752067,
+      "z": -1.71255358308476,
+      "alpha": 0.0492313698418744
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "window": "P3",
+      "order": "event_id",
+      "estimate": -0.786262186594,
+      "se": 0.507760121626552,
+      "z": -1.54849140983206,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "window": "LPP",
+      "order": "subject",
+      "estimate": -0.908083591704169,
+      "se": 0.65290919543321,
+      "z": -1.39082677661118,
+      "alpha": 0.0362029650861761
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "window": "LPP",
+      "order": "event_id",
+      "estimate": -0.920732049172424,
+      "se": 0.58551681408366,
+      "z": -1.57251171448147,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "from": 300,
+      "to": 400,
+      "order": "subject",
+      "estimate": -0.0876346592470575,
+      "se": 0.371321878026801,
+      "z": -0.236007260635292,
+      "alpha": 0.0339029239066445
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "from": 300,
+      "to": 400,
+      "order": "event_id",
+      "estimate": -0.113539061051307,
+      "se": 0.476213603154385,
+      "z": -0.238420448931397,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "from": 125,
+      "to": 275,
+      "order": "subject",
+      "estimate": 0.16170031503846,
+      "se": 0.355922589797633,
+      "z": 0.454313155932018,
+      "alpha": 0.0347659162603186
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "from": 125,
+      "to": 275,
+      "order": "event_id",
+      "estimate": 0.149766134741978,
+      "se": 0.380967442409716,
+      "z": 0.393120561155223,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "from": 0,
+      "to": 1000,
+      "order": "subject",
+      "estimate": -0.491920652000717,
+      "se": 0.46080969346964,
+      "z": -1.06751368074927,
+      "alpha": 0.025829678241994
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "from": 0,
+      "to": 1000,
+      "order": "event_id",
+      "estimate": -0.504184957486404,
+      "se": 0.421518739577617,
+      "z": -1.19611516676962,
+      "alpha": 0
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "from": 575,
+      "to": 600,
+      "order": "subject",
+      "estimate": -0.876605926529379,
+      "se": 0.645169779826477,
+      "z": -1.3587213070723,
+      "alpha": 0.0432766363058771
+    },
+    {
+      "kind": "eeg",
+      "test": "cz-fashion",
+      "from": 575,
+      "to": 600,
+      "order": "event_id",
+      "estimate": -0.886344270132135,
+      "se": 0.600339509490015,
+      "z": -1.47640502769021,
+      "alpha": 0
+    }
+  ]
+}

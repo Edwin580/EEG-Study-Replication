@@ -168,9 +168,9 @@ moral_fashion_plot <- pop_out_panel("moral", "Moral words") +
 #| label: behavioral-gee
 #| include: false
 
-behavioral_gee <- function(block) {
+behavioral_gee <- function(which_phase) {
   d <- relevant_data_fixed %>%
-    filter(is_word, phase == block) %>%
+    filter(is_word, phase == which_phase) %>%
     rename(subject = subject_id)
   fit_gee(correct ~ word_category, d, binomial)
 }
