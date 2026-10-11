@@ -2,14 +2,14 @@
 
 Reads the preprocessed OSF data (https://osf.io/ngtha/) and writes:
 
-  site/data/behavior.json  per-subject accuracy counts, exclusions, stimuli
-  site/data/eeg.json       metadata plus exact window sums for the four
+  docs/site/data/behavior.json  per-subject accuracy counts, exclusions, stimuli
+  docs/site/data/eeg.json       metadata plus exact window sums for the four
                            analysis windows used in This.qmd
-  site/data/eeg.bin        per-condition ERPs and 25 ms bin moments
+  docs/site/data/eeg.bin        per-condition ERPs and 25 ms bin moments
 
 The exclusion rules and key-flip corrections follow This.qmd.
 
-Usage: python3 tools/build_site_data.py data/ site/data/
+Usage: python3 tools/build_site_data.py data/ docs/site/data/
 """
 
 import json
@@ -176,4 +176,4 @@ def main(data_dir, out_dir):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1 else "data", sys.argv[2] if len(sys.argv) > 2 else "site/data")
+    main(sys.argv[1] if len(sys.argv) > 1 else "data", sys.argv[2] if len(sys.argv) > 2 else "docs/site/data")

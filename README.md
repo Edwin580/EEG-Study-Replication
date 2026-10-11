@@ -13,7 +13,7 @@ On the page you can:
 
 Everything runs in the browser from the study's preprocessed data. There is no server and no sign up, and task answers are not stored or sent anywhere.
 
-The full write-up is in [This.qmd](This.qmd), rendered as [This.html](This.html).
+The full write-up is in [This.qmd](This.qmd), rendered as [docs/This.html](docs/This.html) ([online](https://edwin580.github.io/EEG-Study-Replication/This.html)).
 
 ## Results in short
 
@@ -24,10 +24,10 @@ The full write-up is in [This.qmd](This.qmd), rendered as [This.html](This.html)
 
 ## Running it locally
 
-The page is static files with no build step. The browser will not load the data from `file://`, so serve the folder:
+The page is static files in `docs/` with no build step. The browser will not load the data from `file://`, so serve the folder:
 
 ```
-python3 -m http.server 8000
+python3 -m http.server 8000 --directory docs
 # open http://localhost:8000/
 ```
 
@@ -43,10 +43,13 @@ The raw data is on OSF at https://osf.io/ngtha/ (`behavioral.csv`, 15 MB, and `e
 
 ```
 pip install -r tools/requirements.txt
-python3 tools/build_site_data.py data site/data                 # page data, 2.3 MB
+python3 tools/build_site_data.py data docs/site/data            # page data, 2.3 MB
 Rscript tools/reference.R data test/fixtures/r_reference.json   # reference fits for the tests
 quarto render This.qmd                                          # the report
+rm -rf docs/This_files && mv This.html This_files docs/
 ```
+
+Don't use `quarto render --output-dir docs`; it clears the rest of `docs/`.
 
 The R code needs `dplyr`, `readr`, `tidyr`, `ggplot2`, `patchwork`, `gee` and `jsonlite`. `This.qmd` downloads the data with `osfr` if `data/` is empty. Versions used here: R 4.3.3, gee 4.13-26, dplyr 1.1.4, Quarto 1.5.57, Python 3.13, pandas 3.0.5, numpy 2.5.3.
 
@@ -69,24 +72,26 @@ Other fixes in `This.qmd`:
 
 With one 0/1 predictor, everything the GEE needs from a participant is the count, sum and sum of squares of the outcome in each condition. For an arbitrary EEG window, the sum of squares of the window means also needs the cross products between time bins. [tools/build_site_data.py](tools/build_site_data.py) stores those moments for 25 ms bins, plus exact sums for the four analysis windows, which brings 1.5 GB down to 2.3 MB.
 
-[site/js/stats.js](site/js/stats.js) follows `ugee.c` from the `gee` package with its defaults: start from the `glm` fit, moment estimates of scale and exchangeable correlation with the `v4.4compat = FALSE` denominators, tolerance 0.001, at most 25 iterations, and the sandwich variance at the final estimate. [tools/reference.R](tools/reference.R) fits 66 models with the real package, and [test/stats.test.mjs](test/stats.test.mjs) checks the port against them. The agreement is about 1e-12 relative on the analysis windows and 2e-7 on binned windows (float32 moments). One fit takes about 0.35 ms.
+[docs/site/js/stats.js](docs/site/js/stats.js) follows `ugee.c` from the `gee` package with its defaults: start from the `glm` fit, moment estimates of scale and exchangeable correlation with the `v4.4compat = FALSE` denominators, tolerance 0.001, at most 25 iterations, and the sandwich variance at the final estimate. [tools/reference.R](tools/reference.R) fits 66 models with the real package, and [test/stats.test.mjs](test/stats.test.mjs) checks the port against them. The agreement is about 1e-12 relative on the analysis windows and 2e-7 on binned windows (float32 moments). One fit takes about 0.35 ms.
 
 ### Timing in the task
 
-[site/js/task.js](site/js/task.js) makes every display change inside `requestAnimationFrame`. It counts frames for the brief events and records how long each word was actually up. A browser is not a lab display, so the page reports the measured durations and the frame rate rather than claiming exact timing.
+[docs/site/js/task.js](docs/site/js/task.js) makes every display change inside `requestAnimationFrame`. It counts frames for the brief events and records how long each word was actually up. A browser is not a lab display, so the page reports the measured durations and the frame rate rather than claiming exact timing.
 
 ### Layout
 
-The page follows Tufte CSS: a 55% text column, notes in the right margin, ET Book (MIT licensed, from tufte-css 1.8.0, in `site/fonts/`). Charts are hand-written SVG. There are no runtime dependencies.
+The page follows Tufte CSS: a 55% text column, notes in the right margin, ET Book (MIT licensed, from tufte-css 1.8.0, in `docs/site/fonts/`). Charts are hand-written SVG. There are no runtime dependencies.
 
 ## Repository
 
 ```
-index.html             the web page
-site/                  page styles, scripts, fonts and data
+docs/                  everything GitHub Pages serves
+  index.html           the web page
+  site/                page styles, scripts, fonts and data
+  This.html            the rendered report
+This.qmd               the report source
 tools/                 data build script and R reference fits
 test/                  Node tests for the statistics port
-This.qmd, This.html    the full report
 ```
 
 ## References

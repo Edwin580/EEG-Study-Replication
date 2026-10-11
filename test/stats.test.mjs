@@ -5,14 +5,14 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { gee, erfc, twoSidedP } from "../site/js/stats.js";
-import { decodeEeg, eegClusters, behaviorClusters, windowStats, erpSummary } from "../site/js/data.js";
+import { gee, erfc, twoSidedP } from "../docs/site/js/stats.js";
+import { decodeEeg, eegClusters, behaviorClusters, windowStats, erpSummary } from "../docs/site/js/data.js";
 
 const read = (p) => readFileSync(new URL(p, import.meta.url));
 const reference = JSON.parse(read("./fixtures/r_reference.json"));
-const behavior = JSON.parse(read("../site/data/behavior.json"));
-const meta = JSON.parse(read("../site/data/eeg.json"));
-const bin = read("../site/data/eeg.bin");
+const behavior = JSON.parse(read("../docs/site/data/behavior.json"));
+const meta = JSON.parse(read("../docs/site/data/eeg.json"));
+const bin = read("../docs/site/data/eeg.bin");
 const eeg = decodeEeg(meta, bin.buffer.slice(bin.byteOffset, bin.byteOffset + bin.byteLength));
 
 // The R coding of each test: level 0 is R's reference level
