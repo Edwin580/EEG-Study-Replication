@@ -72,7 +72,7 @@ kbd { border: 1px solid #aaa; border-bottom-width: 2px; border-radius: 3px; padd
 
 figure { margin: 10px 0 20px; padding: 0; clear: both; }
 .chart svg { display: block; overflow: visible; font-family: Verdana, Geneva, sans-serif; }
-.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
 .chart, .fits { border: 1px solid #ddd; padding: 10px; background: #fff; }
 .fits { border: 0; padding: 0; }
 
@@ -134,7 +134,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid #3b78c2; outline-
 
 /* ERP controls */
 .erp-controls { margin: 12px 0 8px; padding: 8px 12px; background: #f4f4f4; border: 1px solid #c8c8c8; clear: both; }
-.erp-controls fieldset { border: 0; padding: 4px 0; margin: 0; font-size: 13px; line-height: 1.8; display: flex; flex-wrap: wrap; align-items: baseline; }
+.erp-controls fieldset { border: 0; padding: 4px 0; margin: 0; min-width: 0; font-size: 13px; line-height: 1.8; display: flex; flex-wrap: wrap; align-items: baseline; }
 .erp-controls fieldset + fieldset { border-top: 1px dotted #c8c8c8; }
 .erp-controls fieldset:disabled { color: #999; }
 .erp-controls legend { float: left; width: 80px; padding: 0; font-weight: bold; }
@@ -170,7 +170,8 @@ noscript p { max-width: 960px; margin: 0 auto; padding: 0 24px; }
   .nav a { padding: 12px 8px; }
   article { padding: 4px 16px 16px; border-left: 0; border-right: 0; }
   .marginnote { display: block; float: none; width: auto; margin: 10px 0; }
-  .pair { grid-template-columns: 1fr; gap: 10px; }
+  .pair { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .erp-controls legend { float: none; width: 100%; }
+  .erp-controls label { white-space: normal; }
   .stage { height: 120px; }
 }
