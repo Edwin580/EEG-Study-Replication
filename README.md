@@ -80,7 +80,7 @@ With one 0/1 predictor, everything the GEE needs from a participant is the count
 
 ### Layout
 
-The page is styled like a plain department research page: a masthead, a link bar, Verdana text with Georgia headings and notes in boxes beside the text, all in system fonts. Charts are hand-written SVG. There are no runtime dependencies.
+The page is plain HTML: a column of links on the left, Georgia text with Arial headings, browser-default buttons, all in system fonts. Charts are hand-written SVG. There are no runtime dependencies.
 
 ## Repository
 
