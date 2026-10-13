@@ -80,14 +80,14 @@ With one 0/1 predictor, everything the GEE needs from a participant is the count
 
 ### Layout
 
-The page follows Tufte CSS: a 55% text column, notes in the right margin, ET Book (MIT licensed, from tufte-css 1.8.0, in `docs/site/fonts/`). Charts are hand-written SVG. There are no runtime dependencies.
+The page is plain HTML: a column of links on the left, Georgia text with Arial headings, browser-default buttons, all in system fonts. Charts are hand-written SVG. There are no runtime dependencies.
 
 ## Repository
 
 ```
 docs/                  everything GitHub Pages serves
   index.html           the web page
-  site/                page styles, scripts, fonts and data
+  site/                page styles, scripts and data
   This.html            the rendered report
 This.qmd               the report source
 tools/                 data build script and R reference fits
